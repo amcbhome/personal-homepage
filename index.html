@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  :root{
+    --paper:#f7f6f3;
+    --ink:#2b2b2b;
+    --pencil:#6b7280;
+    --line:#d4d4d4;
+    --accent:#3b82f6;
+  }
+
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  body{
+    display:flex;
+    justify-content:center;
+  }
+
+  .page{
+    width:100%;
+    max-width:720px;
+    padding:28px 22px 60px;
+  }
+
+  /* Header */
+  .header{
+    font-size:13px;
+    color:var(--pencil);
+    margin-bottom:18px;
+  }
+
+  .header .time{
+    font-weight:500;
+  }
+
+  .rule{
+    margin:10px 0 18px;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* Sections */
+  section{
+    margin-bottom:28px;
+  }
+
+  h2{
+    font-size:15px;
+    font-weight:600;
+    margin:0 0 6px;
+  }
+
+  h2::after{
+    content:"";
+    display:block;
+    width:100%;
+    border-bottom:1px solid var(--line);
+    margin-top:4px;
+  }
+
+  ul{
+    list-style:none;
+    padding-left:0;
+    margin:10px 0 0;
+  }
+
+  li{
+    margin:6px 0;
+    font-size:14px;
+  }
+
+  a{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px dotted var(--line);
+  }
+
+  a:hover{
+    color:var(--accent);
+    border-bottom-color:var(--accent);
+  }
+
+  /* Notes */
+  .notes li::before{
+    content:"▢";
+    margin-right:8px;
+    color:var(--pencil);
+  }
+
+  /* Footer feel */
+  .footer{
+    margin-top:40px;
+    font-size:12px;
+    color:var(--pencil);
+  }
+</style>
+</head>
+
+<body>
+  <div class="page">
+
+    <div class="header">
+      <div class="time" id="datetime">—</div>
+      <div class="weather">Kilmarnock · 7°C · Cloudy</div>
+      <div class="rule"></div>
+    </div>
+
+    <section>
+      <h2>Bookmarks</h2>
+
+      <ul>
+        <li><strong>Accounting</strong></li>
+        <li>· <a href="https://www.ifrs.org" target="_blank">IFRS</a></li>
+        <li>· <a href="https://www.accaglobal.com" target="_blank">ACCA</a></li>
+        <li>· <a href="https://www.gov.uk/government/organisations/hm-revenue-customs" target="_blank">HMRC</a></li>
+      </ul>
+
+      <ul>
+        <li style="margin-top:10px;"><strong>Tech</strong></li>
+        <li>· <a href="https://github.com/amcbhome" target="_blank">GitHub</a></li>
+        <li>· <a href="https://docs.streamlit.io" target="_blank">Streamlit Docs</a></li>
+        <li>· <a href="https://www.debian.org/doc/" target="_blank">Debian Docs</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <ul class="notes">
+        <li>Check VAT rate on utilities</li>
+        <li>Refactor regression app</li>
+        <li>Read IFRS 18 summary</li>
+      </ul>
+    </section>
+
+    <div class="footer">
+      Plain HTML · Local first · Personal
+    </div>
+
+  </div>
+
+<script>
+  function updateTime(){
+    const now = new Date();
+    const opts = { weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit' };
+    document.getElementById('datetime').textContent =
+      now.toLocaleString(undefined, opts).replace(',', ' ·');
+  }
+  updateTime();
+  setInterval(updateTime, 60000);
+</script>
+
+</body>
+</html>
